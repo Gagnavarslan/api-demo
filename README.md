@@ -18,6 +18,9 @@ The setup instructions assume the following;
 - Python (2.6+) and [virtualenv](http://docs.python-guide.org/en/latest/dev/virtualenvs/) 
 - Credentials and info for a running CoreData
 
+### Up and running
+In your environment do the following:
+
 ```sh
 git clone https://github.com/Gagnavarslan/api-demo
 
