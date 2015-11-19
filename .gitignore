@@ -55,9 +55,18 @@ node_modules/
 
 # virtual environments
 .env
+.Python
+bin/
+include/
+lib/
+share/
 
 # User-uploaded media
 airwaves/media/
 
 # Hitch directory
 tests/.hitch
+
+# DB and pip files
+*.db
+pip-selfcheck.json
