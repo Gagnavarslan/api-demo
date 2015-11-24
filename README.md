@@ -19,6 +19,13 @@ The setup instructions assume the following;
 - Credentials and info for a running CoreData
     - Configurable in the .env file
 
+If this is your first encounter with Django, now would be a good time to read
+up a bit. Here are a few links to get you started:
+
+- [Offical Django getting started guide](https://www.djangoproject.com/start/)
+- [Starting a Django Project](https://realpython.com/learn/start-django/)
+- [Django for beginners  - video](https://www.youtube.com/watch?v=zTNA0MtZwso)
+
 ### Up and running
 In your environment do the following:
 
@@ -62,3 +69,54 @@ To explore the API and what it has to offer, you can log into CoreData using
 the same credentials as you should have obtained and navigate the api's live
 Swagger documentation:
 [airwaves.coredata.is/api/v2/doc/](https://airwaves.coredata.is/api/v2/doc/)
+
+### How does this app work?
+Under the `airwaves` folder there is an app folder, `contacts`. This is where
+everything happens. In the `urls.py` file we make sure that when you navigate
+to [locahost:8000/contacts](localhost:8000/contacts) Django will match your
+request to the view defined in `views.py`.
+
+```python
+urlpatterns = [
+    # `^$` matches `contacts/`
+    url(r'^$', views.Contacts.as_view(), name='list'),
+]
+```
+
+The view (`Contacts` class), uses a template (stored under the `templates`
+folder. It gets the context (list of contacts) by querying the CoreData API
+from the CoreData instance defined in the `.env` file. This is fetched by
+using the Python requests library (basic auth). The request is made, and the
+returned items are injected into the context and returned to the template.
+
+```python
+class Contacts(TemplateView):
+    template_name = "contacts/contacts_list.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(Contacts, self).get_context_data(**kwargs)
+
+        # Send a request to the CoreData API
+        # JSON is returned
+        contacts = requests.get(
+            '{}api/v2/contacts'.format(COREDATA_URL),
+            auth=(COREDATA_USER, COREDATA_PASSWORD)
+        )
+        context["contacts"] = contacts.json()
+
+        return context
+```
+
+The template then loops through the items to display a list of the found first
+20 contacts.
+
+```html
+    <div class="list-group">
+        {% for contact in contacts.objects %}
+          <a href="#" class="list-group-item">
+            <h4 class="list-group-item-heading">{{ contact.title }}</h4>
+          </a>
+        {% endfor %}
+
+    </div>
+```
