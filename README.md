@@ -117,6 +117,72 @@ The template then loops through the items to display a list of the found first
             <h4 class="list-group-item-heading">{{ contact.title }}</h4>
           </a>
         {% endfor %}
-
     </div>
+```
+
+A response from CoreData API contacts endpoint could look like:
+
+```json
+{
+  "meta": {
+    "limit": 1,
+    "next": "/api/v2/contacts/?api_key=special-key&limit=1&offset=1",
+    "offset": 0,
+    "previous": null,
+    "total_count": 199
+  },
+  "objects": [
+    {
+      "aspects": {},
+      "contact_addresses": [
+        {
+          "city": "Hafnarfjörður",
+          "code": "220",
+          "country": "country:Iceland:europe",
+          "label": null,
+          "state": "",
+          "street": "Bæjarhrauni 22"
+        }
+      ],
+      "contact_groups": [],
+      "created": "2012-06-22T10:23:08",
+      "created_by": null,
+      "description": "",
+      "dynatype": {
+        "caption_plural": "dynatypes_labels:Organization_singular:",
+        "caption_singular": "dynatypes_labels:Organization_singular:",
+        "id": "4dc7af6c-0c28-4866-82cb-306d0b5446ce"
+      },
+      "emails": [
+        {
+          "email": "coredata@azazo.com",
+          "label": "email_label:Work:"
+        }
+      ],
+      "id": "b23c63d7-d74b-4487-b29a-32c3a2809fc0",
+      "identifier": "1111111119",
+      "modified": "2015-08-19T11:00:00",
+      "modified_by": null,
+      "organization": null,
+      "phones": [
+        {
+          "label": "phone_label:Work:",
+          "number": "5531000"
+        }
+      ],
+      "resource_uri": "/api/v2/contacts/b23c63d7-d74b-4487-b29a-32c3a2809fc0/",
+      "status": "contact_status:Active:",
+      "tags": [],
+      "title": "Azazo hf.",
+      "type": "Contact",
+      "urls": [
+        {
+          "label": "url_label:Website:",
+          "url": "azazo.com"
+        }
+      ],
+      "version": "0.1"
+    }
+  ]
+}
 ```
