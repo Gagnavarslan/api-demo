@@ -17,19 +17,48 @@ The setup instructions assume the following;
 - Git
 - Python (2.6+) and [virtualenv](http://docs.python-guide.org/en/latest/dev/virtualenvs/) 
 - Credentials and info for a running CoreData
+    - Configurable in the .env file
 
 ### Up and running
 In your environment do the following:
 
-```sh
-git clone https://github.com/Gagnavarslan/api-demo
+1. Grab af copy of the code
 
-cd api-demo
-virtualenv . -—no-site-packages
-source bin/activate
-bin/pip install -r requirements/local.txt
+    ```sh
+    git clone https://github.com/Gagnavarslan/api-demo
+    ```
+2. Create a virtual environment
 
-python manage.py migrate
+    ```sh
+    cd api-demo
+    virtualenv . -—no-site-packages
+    source bin/activate
+    bin/pip install -r requirements/local.txt
+    ```
+3. Edit the `.env` file (add the password):
 
-python manage.py runserver
-```
+    ```sh
+    COREDATA_URL=https://airwaves.coredata.is/
+    COREDATA_USER=api-demo
+    COREDATA_PASSWORD=ENTER-PASSWORD # <- Here
+    ```
+4. Prepare app, and start it:
+
+    ```sh
+    python manage.py migrate
+    python manage.py runserver
+    ```
+
+### What are you looking at?
+When you look at the running app,
+[http://localhost:8000/](http://localhost:8000/), you will see a tab
+"Contacts". Under this page you will see a simple list of the 20 first contacts
+found on the CoreData server (as defined in the COREDATA_URL in the .env file).
+
+This is a very bare-bone django app that just fetches from a restful api and
+displays the found items as a list on a simple view.
+
+To explore the API and what it has to offer, you can log into CoreData using
+the same credentials as you should have obtained and navigate the api's live
+Swagger documentation:
+[airwaves.coredata.is/api/v2/doc/](https://airwaves.coredata.is/api/v2/doc/)
