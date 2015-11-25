@@ -71,10 +71,13 @@ Swagger documentation:
 [airwaves.coredata.is/api/v2/doc/](https://airwaves.coredata.is/api/v2/doc/)
 
 ### How does this app work?
-Under the `airwaves` folder there is an app folder, `contacts`. This is where
-everything happens. In the `urls.py` file we make sure that when you navigate
-to [locahost:8000/contacts](localhost:8000/contacts) Django will match your
-request to the view defined in `views.py`.
+Under the `airwaves` folder there is an app folder, `contacts`. This is an
+example app that queries the CoreData API, fetches the first 20 contacts and
+displays them as a list.
+
+In the `urls.py` file we make sure that when you navigate to
+[locahost:8000/contacts](localhost:8000/contacts) Django will match your request
+to the view defined in `views.py`.
 
 ```python
 urlpatterns = [
