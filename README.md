@@ -42,7 +42,8 @@ In your environment do the following:
     source bin/activate
     bin/pip install -r requirements/local.txt
     ```
-3. Edit the `.env` file (add the password):
+3. Create a file called `.env` file, similar to the `sample.env` but make sure
+to add the password:
 
     ```sh
     COREDATA_URL=https://airwaves.coredata.is/
