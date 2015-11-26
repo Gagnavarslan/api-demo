@@ -69,3 +69,6 @@ tests/.hitch
 # DB and pip files
 *.db
 pip-selfcheck.json
+
+# CoreData Credentials
+.env
